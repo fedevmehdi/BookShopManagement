@@ -14,3 +14,21 @@
  * - Display front to rear.
  * - Verify node cleanup through repeated use.
  */
+
+#include "Queue.h"
+
+ int main() {
+    Queue<int> q;
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(4);
+    q.enqueue(5);
+    q.enqueue(6);
+    q.getSize();
+    // q.display();
+    
+    cout << q.peekFront();
+    cout << q.peekRear();
+
+    return 0;
+ }

@@ -44,3 +44,100 @@
  * STL restriction:
  * - Do not use std::queue or std::list.
  */
+
+#pragma once
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+template <typename T>
+class Node {
+public:
+   T data;
+   Node* next;
+   Node(T data) {
+      this->data = data;
+      next = nullptr;
+   }
+};
+
+template <typename T>
+class Queue {
+public:
+   Node<T>* front;
+   Node<T>* rear;
+   int size;
+
+   Queue(): size(0), front(nullptr), rear(nullptr) {};
+
+   void enqueue(T data){
+      Node<T>* newNode = new Node<T>(data);
+      if(front == nullptr) {
+         front = rear = newNode;
+      } else {
+         rear->next = newNode;
+         rear = newNode;
+      }
+      size++;
+   }
+
+   T dequeue() {
+      if(front == nullptr) {
+         throw out_of_range("Queue is empty");
+      } 
+
+      Node<T>* target = front;
+      T value = target->data;
+      
+      front = front->next;
+      if(front == nullptr) {
+         rear = nullptr;
+      }
+
+      size--;
+      delete target;
+      return value; 
+   }
+
+   T peekFront() {
+      if(front == nullptr) {
+         throw out_of_range("Queue is empty");
+      }
+      return front->data;
+   }
+
+   T peekRear() {
+      if(rear == nullptr) {
+         throw out_of_range("Queue is empty");
+      }
+      return rear->data;
+   }
+
+   bool isEmpty() {
+      if(rear == nullptr && front == nullptr) {
+         return true;
+      } else return false;
+   }
+
+   int getSize() {
+      return size;
+   }
+
+   void display() {
+      if(front==nullptr) {
+         throw out_of_range("Queue is empty");
+      }
+      Node<T>* iterator = front;
+      while(iterator != nullptr) {
+         cout << iterator->data;
+         if(iterator->next != nullptr) {
+            cout << " -> ";
+         }
+         iterator = iterator->next;
+      }
+      cout << endl;
+   }
+
+};
