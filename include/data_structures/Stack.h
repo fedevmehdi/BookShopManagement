@@ -41,3 +41,93 @@
  * STL restriction:
  * - Do not use std::stack or std::list.
  */
+
+#pragma once
+
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+template <typename T>
+class StackNode {
+public:
+    T data;
+    StackNode* next;
+
+    StackNode(T data) : data(data), next(nullptr) {}
+};
+
+template <typename T>
+class Stack {
+public:
+    StackNode<T>* top;
+    int size;
+
+    Stack() : top(nullptr), size(0) {}
+
+    ~Stack() {
+        clear();
+    }
+
+    void push(T data) {
+        StackNode<T>* newNode = new StackNode<T>(data);
+        newNode->next = top;
+        top = newNode;
+        size++;
+    }
+
+    T pop() {
+        if (top == nullptr) {
+            throw out_of_range("Stack is empty");
+        }
+
+        StackNode<T>* target = top;
+        T value = target->data;
+        top = top->next;
+        size--;
+        delete target;
+        return value;
+    }
+
+    T peek() {
+        if (top == nullptr) {
+            throw out_of_range("Stack is empty");
+        }
+        return top->data;
+    }
+
+    bool isEmpty() {
+        return top == nullptr;
+    }
+
+    int getSize() {
+        return size;
+    }
+
+    void display() {
+        if (top == nullptr) {
+            cout << "The stack is empty." << endl;
+            return;
+        }
+
+        StackNode<T>* iterator = top;
+        while (iterator != nullptr) {
+            cout << iterator->data;
+            if (iterator->next != nullptr) {
+                cout << " -> ";
+            }
+            iterator = iterator->next;
+        }
+        cout << endl;
+    }
+
+    void clear() {
+        while (top != nullptr) {
+            StackNode<T>* nodeToDelete = top;
+            top = top->next;
+            delete nodeToDelete;
+        }
+        size = 0;
+    }
+};
