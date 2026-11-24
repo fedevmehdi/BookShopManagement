@@ -35,8 +35,8 @@ work from skipping ahead.
 - [x] Create project folders.
 - [x] Create commented skeleton files.
 - [x] Add project context and phase tracker.
-- [ ] Confirm build command and team naming conventions.
-- [ ] Commit the initial skeleton.
+- [x] Confirm build command and team naming conventions.
+- [x] Commit the initial skeleton.
 
 ## Phase 2 — Data Structures
 
@@ -51,10 +51,10 @@ Recommended implementation order:
 
 Completion checklist:
 
-- [ ] Linked List implemented and tested.
-- [ ] Stack implemented and tested.
-- [ ] Queue implemented and tested.
-- [ ] BST implemented and tested.
+- [x] Linked List implemented and tested.
+- [x] Stack implemented and tested.
+- [x] Queue implemented and tested.
+- [x] BST implemented and tested.
 - [ ] Hash Table implemented and tested.
 - [ ] Sorting and Searching implemented and tested.
 - [ ] Independent tests pass.
@@ -63,8 +63,8 @@ Completion checklist:
 
 ## Phase 3 — Entity Classes
 
-- [ ] Implement `Book` fields, constructor/validation, getters/setters, stock methods, and display contract.
-- [ ] Implement `Customer` fields and lifecycle contract.
+- [x] Implement `Book` fields, constructor/validation, getters/setters, stock methods, and display contract.
+- [x] Implement `Customer` fields and lifecycle contract.
 - [ ] Implement `Supplier` fields and lifecycle contract.
 - [ ] Implement `Employee` fields and lifecycle contract.
 - [ ] Implement `Order` fields and status contract.

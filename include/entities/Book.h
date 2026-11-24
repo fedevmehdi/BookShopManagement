@@ -55,7 +55,6 @@
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
-#include <string>
 
 using namespace std;
 
@@ -168,15 +167,13 @@ public:
     // toCsvRow()/fromCsvRow() format: bookId,title,author,category,price,stockQuantity,supplierId,active
     string toCsvRow() const {
         return to_string(bookId) + "," + title + "," + author + "," + category + "," +
-               to_string(price) + "," + to_string(stockQuantity) + "," +
-               to_string(supplierId) + "," + (active ? "1" : "0");
+            to_string(price) + "," + to_string(stockQuantity) + "," +
+            to_string(supplierId) + "," + (active ? "1" : "0");
     }
     bool fromCsvRow(const string& row) {
         // int bookId, string title, string author, string category, double price, int stockQuantity, int supplierId, bool active
         // Divide the string by comma
         // check if we have 8 fields or not
-
-
         stringstream ss(row);
         int bookId, stockQuantity, supplierId;
         string title, author, category;
