@@ -8,7 +8,7 @@ work from skipping ahead.
 - Update `CURRENT_PHASE` before starting work.
 - Mark a phase complete only after its definition-of-done evidence exists.
 - Do not begin the next phase while unchecked required work remains.
-- Keep phase labels in source and test file headers in sync with this tracker.
+- Keep phase labels in header and test file comments in sync with this tracker.
 - Record test commands or test evidence in the evidence column.
 
 ## Current status
@@ -119,9 +119,9 @@ Completion checklist:
 
 | Skeleton area | Phase |
 |---|---|
-| `include/data_structures/*`, `src/SortingSearching.cpp`, `tests/test*` | 2 |
-| `include/entities/*`, `src/entities/*`, `tests/testEntities.cpp` | 3 |
-| `include/managers/BookManager.h`, `src/managers/BookManager.cpp`, `tests/testBookManager.cpp` | 4 |
+| `include/data_structures/*`, `tests/test*` | 2 |
+| `include/entities/*`, `tests/testEntities.cpp` | 3 |
+| `include/managers/BookManager.h`, `tests/testBookManager.cpp` | 4 |
 | Customer/Supplier/Employee manager files | 5 |
 | Order/Transaction manager files | 6 |
 | `include/services/FileManager.h`, persistence data files | 7 |

@@ -262,6 +262,18 @@ Use consistent safe-operation contracts. Operations that may fail due to an empt
 - Keep code beginner-friendly and explainable in the viva.
 - Avoid unnecessary complexity and feature creep.
 
+## 8.1 Header-only module layout
+
+Keep each module's interface and implementation together in its corresponding
+header under `include/`. This applies to data structures, entities, managers,
+services, and sorting/searching utilities. Define class methods inside the class
+where practical; any non-template function defined in a header must be `inline`
+to avoid duplicate definitions when multiple files include it. Template
+implementations belong in headers.
+
+`src/main.cpp` is the application's only source file; all module code belongs
+in headers.
+
 ## 9. Project structure (Phase 1–2 only)
 
 Create these folders and files now; files can initially be empty:
@@ -279,8 +291,7 @@ BookShopManagement/
 │       └── SortingSearching.h
 │
 ├── src/
-│   ├── main.cpp
-│   └── SortingSearching.cpp
+│   └── main.cpp
 │
 ├── tests/
 │   ├── testLinkedList.cpp
@@ -297,8 +308,8 @@ BookShopManagement/
 ```
 
 **Folder responsibilities:**
-- `include/data_structures/`: ADT headers and implementations (templates generally remain in headers).
-- `src/`: main program and non-template implementation files.
+- `include/`: each module's interface and implementation in one header.
+- `src/`: application entry point (`main.cpp`); module implementations are not placed here.
 - `tests/`: independent tests.
 - `data/`: files to be introduced in later phases.
 

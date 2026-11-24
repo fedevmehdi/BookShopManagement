@@ -11,7 +11,7 @@
 This project is for our **Data Structures and Algorithms** university course. The objective is not just to have a working application, but to **deeply understand every pointer, node, traversal, and memory allocation** so we can confidently explain every single line during our project viva/defense.
 
 ### 📝 The Blueprint / Skeleton Strategy
-All files in this repository currently contain **commented Abstract Data Types (ADTs), contracts, and specifications rather than finished code**. 
+**Target layout:** Keep each module's interface and implementation together in its matching header. Some module implementations are still pending; when added, they belong in the header rather than a `.cpp` file.
 
 We intentionally designed it this way so that:
 1. **Clear Roadmaps:** Every file explicitly documents its responsibilities, private members, public methods, edge cases, and relationships with other modules.
@@ -146,7 +146,7 @@ We are currently in **Phase 2**. We implement and test data structures **one by 
 5. **`HashTable`**:
    * Implement in `include/data_structures/HashTable.h`, test in `tests/testHashTable.cpp`. Test forced collisions and chain deletion.
 6. **`SortingSearching`**:
-   * Implement in `include/data_structures/SortingSearching.h` and `src/SortingSearching.cpp`. Test selection sort and binary search in `tests/testSortingSearching.cpp`.
+   * Implement in `include/data_structures/SortingSearching.h`. Define its functions inline in the header and test selection sort and binary search in `tests/testSortingSearching.cpp`.
 
 ---
 
