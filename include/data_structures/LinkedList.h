@@ -6,21 +6,19 @@
  *
  * Purpose:
  * - Primary owner of Book records.
- * - May also be used for standalone integer data-structure tests.
  *
  * Implementation:
  * - Singly linked list.
  *
  * State:
- * - Node: stores data and a pointer to the next node.
+ * - BookNode: stores a Book and a pointer to the next node.
  * - head: pointer to the first node; nullptr when the list is empty.
  * - size: number of nodes currently in the list.
  *
  * Operations:
- * - insertAtBeginning(data): insert a node at the head.
- * - insertAtEnd(data): insert a node after the last node.
+ * - insertAtBeginning(Book): insert a node at the head.
+ * - insertAtEnd(Book): insert a node after the last node.
  * - deleteNode(id): remove the first node matching id; return success/failure.
- *   (For integer tests: match data == id. For Book/entity records: match record ID == id).
  * - search(id): return a pointer to the matching element, or nullptr if not found.
  * - display(): display the elements from head to tail.
  * - isEmpty(): return true when the list contains no nodes.
@@ -37,8 +35,135 @@
  *
  * Ownership:
  * - The Linked List owns dynamically allocated nodes.
- * - Book objects stored as data should remain owned by this primary collection.
+ * - Book objects stored in the list should remain owned by this primary collection.
  *
  * STL restriction:
  * - Do not use std::list, std::vector, or another STL container for the nodes.
  */
+
+#pragma once
+
+#include <iostream>
+#include "../entities/Book.h"
+
+using namespace std;
+
+class BookNode {
+public:
+    Book book;
+    BookNode* next;
+
+    BookNode(const Book& value): book(value), next(nullptr) {}
+};
+
+class LinkedList {
+public:
+    int size;
+    BookNode* head;
+    BookNode* tail;
+
+    LinkedList(): head(nullptr), tail(nullptr), size(0) {}
+
+    ~LinkedList() {
+        clear();
+    }
+
+    void insertAtBeginning(const Book& book) {
+        BookNode* newNode = new BookNode(book);
+        newNode->next = head;
+        head = newNode;
+
+        if (tail == nullptr) {
+            tail = newNode;
+        }
+
+        size++;
+    }
+
+    void insertAtEnd(const Book& book) {
+        BookNode* newNode = new BookNode(book);
+
+        if (head == nullptr) {
+            head = tail = newNode;
+        } else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+
+        size++;
+    }
+
+    bool deleteNode(int bookId) {
+        BookNode* previous = nullptr;
+        BookNode* current = head;
+
+        while (current != nullptr) {
+            if (current->book.getBookId() == bookId) {
+                if (previous == nullptr) {
+                    head = current->next;
+                } else {
+                    previous->next = current->next;
+                }
+
+                if (current == tail) {
+                    tail = previous;
+                }
+
+                delete current;
+                size--;
+                return true;
+            }
+
+            previous = current;
+            current = current->next;
+        }
+
+        return false;
+    }
+
+    Book* search(int bookId) {
+        BookNode* current = head;
+
+        while (current != nullptr) {
+            if (current->book.getBookId() == bookId) {
+                return &current->book;
+            }
+            current = current->next;
+        }
+
+        return nullptr;
+    }
+
+    void display() {
+        if (head == nullptr) {
+            cout << "The list is empty." << endl;
+            return;
+        }
+
+        BookNode* current = head;
+        while (current != nullptr) {
+            current->book.display();
+            cout << endl;
+            current = current->next;
+        }
+    }
+
+    bool isEmpty() {
+        return head == nullptr;
+    }
+
+    int getSize() {
+        return size;
+    }
+
+    void clear() {
+        while (head != nullptr) {
+            BookNode* nodeToDelete = head;
+            head = head->next;
+            delete nodeToDelete;
+        }
+
+        tail = nullptr;
+        size = 0;
+    }
+};
