@@ -66,7 +66,7 @@ Completion checklist:
 - [x] Implement `Book` fields, constructor/validation, getters/setters, stock methods, and display contract.
 - [x] Implement `Customer` fields and lifecycle contract.
 - [ ] Implement `Supplier` fields and lifecycle contract.
-- [ ] Implement `Employee` fields and lifecycle contract.
+- [x] Implement `Employee` fields and lifecycle contract.
 - [ ] Implement `Order` fields and status contract.
 - [ ] Implement `Transaction` fields and history contract.
 - [ ] Add and pass independent entity tests.

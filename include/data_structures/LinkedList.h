@@ -134,7 +134,7 @@ public:
         return nullptr;
     }
 
-    void display() {
+    void display() const {
         if (head == nullptr) {
             cout << "The list is empty." << endl;
             return;
